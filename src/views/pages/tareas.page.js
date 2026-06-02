@@ -17,8 +17,13 @@ function obtenerBadgePrioridad(prioridad) {
 export function tareasPage(tareas) {
   let contenido = `
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1>Lista de tareas</h1>
-            <a href="/tareas/nueva" class="btn btn-primary">Nueva tarea</a>
+            <h1>
+            <i class="bi bi-card-checklist"></i>
+             Lista de tareas
+            </h1>
+            <a href="/tareas/nueva" class="btn btn-primary"> <i class="bi bi-plus-circle"></i> 
+            Nueva tarea
+            </a>
         </div>
 
         <div class="card mb-4 shadow-sm">
@@ -35,7 +40,7 @@ export function tareasPage(tareas) {
                     </div>
 
                     <div class="col-md-4">
-                        <button type="submit" class="btn btn-outline-primary w-100">
+                        <button type="submit" class="btn btn-outline-primary w-100"><i class="bi bi-funnel-fill"></i>
                             Filtrar
                         </button>
                     </div>
@@ -43,50 +48,76 @@ export function tareasPage(tareas) {
             </div>
         </div>
     `;
-
-  if (tareas.length === 0) {
+    if (tareas.length === 0) {
     contenido += `
-            <div class="alert alert-info">
-                No hay tareas registradas.
+        <div class="alert alert-info">
+        No hay tareas
+        </div>
+    `;
+  } 
+
+  if (tareas.length > 0) {
+    contenido += `
+            <div class="table-responsive">
+            <table class="table align-middle">
+                <tr>
+                <th>Titulo</th>
+                <th>Descripción</th>
+                <th>Estado</th>
+                <th>Prioridad</th>
+                <th>Acciones</th>
+                </tr>
+            <tbody>
             </div>
         `;
+        
   }
 
   tareas.forEach((tarea) => {
     contenido += `
-            <div class="card mb-3 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">${tarea.titulo}</h5>
+            <tr>
+                    <td><strong>${tarea.titulo}</strong></td>
 
-                    <p class="card-text">${tarea.descripcion}</p>
+                    <td>${tarea.descripcion}</td>
 
+                    <td>
                     <span class="badge ${obtenerBadgeEstado(tarea.estado)}">
                         ${tarea.estado}
                     </span>
-
+                    </td>
+                    
+                    <td>
                     <span class="badge ${obtenerBadgePrioridad(tarea.prioridad)}">
                         Prioridad ${tarea.prioridad}
                     </span>
+                    </td>
 
-                    <div class="mt-3">
-                        <a href="/tareas/${tarea.id}" class="btn btn-sm btn-outline-primary">
+                    <td>
+                        <a href="/tareas/${tarea.id}" class="btn btn-sm btn-outline-primary"> <i class="bi bi-eye-fill"></i>
                             Ver detalle
                         </a>
 
-                        <a href="/tareas/${tarea.id}/editar" class="btn btn-sm btn-outline-warning">
+                        <a href="/tareas/${tarea.id}/editar" class="btn btn-sm btn-outline-warning"><i class=" bi bi-pencil-square"></i>
                             Editar
                         </a>
 
                         <form action="/tareas/${tarea.id}/eliminar" method="POST" class="d-inline">
-                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                            <button type="submit" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i>
                                 Eliminar
                             </button>
                         </form>
-                    </div>
-                </div>
-            </div>
+                    </td>
+                </tr>
+           
         `;
   });
+  contenido += `
+           </tbody>
+           </table>
+           </div>
+        `;
+
+
 
   return layout("Tareas", contenido);
 }
