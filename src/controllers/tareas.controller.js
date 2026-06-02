@@ -87,9 +87,9 @@ export function eliminarTarea(req, res) {
 
 export function mostrarResumen(req, res) {
   const total = tareas.length;
-  const pendientes = tareas.filter(tarea => tarea.estado === "Pendiente").length;
-  const enProgreso = tareas.filter(tarea => tarea.estado === "En Progreso").length;
-  const completadas = tareas.filter(tarea => tarea.estado === "Completada").length;
+  const pendientes = tareas.filter(tarea => tarea.estado === "pendiente").length;
+  const enProgreso = tareas.filter(tarea => tarea.estado === "en progreso").length;
+  const completadas = tareas.filter(tarea => tarea.estado === "completada").length;
 
   res.send(resumenPage({total, pendientes, enProgreso, completadas}));
 }

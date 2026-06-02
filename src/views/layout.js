@@ -24,7 +24,7 @@ export function layout(titulo, contenido) {
             <a class="nav-link" href="/"><i class="bi bi-house-fill"> Inicio</i></a>
             <a class="nav-link" href="/tareas"><i class="bi bi-list-task"> Tareas</i></a>
             <a class="nav-link" href="/tareas/nueva"><i class="bi bi-plus"> Nueva tarea</i></a>
-            <a class="nav-link" href="/resumen"><i class="bi bi-bar-chart-fill">Resumen</i></a>
+            <a class="nav-link" href="/tareas/resumen"><i class="bi bi-bar-chart-fill">Resumen</i></a>
           </div>
         </div>
       </nav>

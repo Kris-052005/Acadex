@@ -1,4 +1,4 @@
-import { kayout } from "../layout.js";
+import { layout } from "../layout.js";
 
 export function resumenPage(estadisticas) {
   const contenido = `
@@ -12,7 +12,7 @@ export function resumenPage(estadisticas) {
     <div class="card text-center border-primary">
     <div class="card-body">
     <h5>Total de tareas</h5>
-    <h2>${estadistica.total}</h2>
+    <h2>${estadisticas.total}</h2>
     </div>
     </div>
     </div>
@@ -21,7 +21,7 @@ export function resumenPage(estadisticas) {
     <div class="card text-center border-danger">
     <div class="card-body">
     <h5>Tareas pendientes</h5>
-    <h2>${estadistica.pendientes}</h2>
+    <h2>${estadisticas.pendientes}</h2>
     </div>
     </div>
     </div>
@@ -30,7 +30,7 @@ export function resumenPage(estadisticas) {
     <div class="card text-center border-warning">
     <div class="card-body">
     <h5>Tareas en progreso</h5>
-    <h2>${estadistica.enProgreso}</h2>
+    <h2>${estadisticas.enProgreso}</h2>
     </div>
     </div>
     </div>
@@ -39,7 +39,7 @@ export function resumenPage(estadisticas) {
     <div class="card text-center border-success">
     <div class="card-body">
     <h5>Tareas completadas</h5>
-    <h2>${estadistica.completadas}</h2>
+    <h2>${estadisticas.completadas}</h2>
     </div>
     </div>
     </div>

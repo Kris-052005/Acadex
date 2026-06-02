@@ -13,8 +13,8 @@ import {
 const router = Router();
 
 router.get("/", listarTareas);
-router.get("/nueva", mostrarFormularioNuevaTarea);
 router.get("/resumen", mostrarResumen);
+router.get("/nueva", mostrarFormularioNuevaTarea);
 router.post("/", crearTarea);
 router.get("/:id", verDetalleTarea);
 router.get("/:id/editar", mostrarFormularioEditarTarea);
