@@ -5,16 +5,18 @@ import { detalleTareaPage } from "../views/pages/detalleTarea.page.js";
 import { nuevaTareaPage } from "../views/pages/nuevaTarea.page.js";
 import { editarTareaPage } from "../views/pages/editarTarea.page.js";
 import { error404Page } from "../views/pages/error404.page.js";
+import {resumenPage} from "../views/pages/resumen.page.js";
 
 export function listarTareas(req, res) {
   const estado = req.query.estado;
+  const mensaje = req.query.mensaje;
 
   if (estado) {
     const tareasFiltradas = tareas.filter((tarea) => tarea.estado === estado);
-    return res.send(tareasPage(tareasFiltradas));
+    return res.send(tareasPage(tareasFiltradas, mensaje));
   }
 
-  res.send(tareasPage(tareas));
+  res.send(tareasPage(tareas, mensaje));
 }
 
 export function verDetalleTarea(req, res) {
@@ -43,7 +45,7 @@ export function crearTarea(req, res) {
 
   tareas.push(nuevaTarea);
 
-  res.redirect("/tareas");
+  res.redirect("/tareas?mensaje=creada");
 }
 
 export function mostrarFormularioEditarTarea(req, res) {
@@ -69,7 +71,7 @@ export function actualizarTarea(req, res) {
   tarea.estado = req.body.estado;
   tarea.prioridad = req.body.prioridad;
 
-  res.redirect("/tareas");
+  res.redirect("/tareas?mensaje=actualizada");
 }
 
 export function eliminarTarea(req, res) {
@@ -80,5 +82,15 @@ export function eliminarTarea(req, res) {
     tareas.splice(indice, 1);
   }
 
-  res.redirect("/tareas");
+  res.redirect("/tareas?mensaje=eliminada");
 }
+
+export function mostrarResumen(req, res) {
+  const total = tareas.length;
+  const pendientes = tareas.filter(tarea => tarea.estado === "Pendiente").length;
+  const enProgreso = tareas.filter(tarea => tarea.estado === "En Progreso").length;
+  const completadas = tareas.filter(tarea => tarea.estado === "Completada").length;
+
+  res.send(resumenPage({total, pendientes, enProgreso, completadas}));
+}
+
