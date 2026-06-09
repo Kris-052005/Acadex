@@ -1,4 +1,4 @@
-import { layout } from "../layout.js";
+import { layout } from "./layout.js";
 
 export function editarTareaPage(tarea) {
   return layout(

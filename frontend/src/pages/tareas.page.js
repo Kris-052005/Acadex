@@ -1,4 +1,4 @@
-import { layout } from "../layout.js";
+import { layout } from "./layout.js";
 
 function obtenerBadgeEstado(estado) {
   if (estado === "pendiente") return "bg-danger";
